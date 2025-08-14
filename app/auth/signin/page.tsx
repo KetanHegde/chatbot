@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 export default function OTPSignIn() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
+
   const {
     signInEmailOTP,
     verifyEmailOTP,
@@ -86,26 +87,16 @@ export default function OTPSignIn() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-12 relative overflow-hidden">
+    <div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-12 relative overflow-hidden"
+      suppressHydrationWarning
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-32 w-80 h-80 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-500/10 blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-32 w-80 h-80 rounded-full bg-gradient-to-r from-purple-400/10 to-pink-500/10 blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-3xl animate-pulse delay-500"></div>
       </div>
-
-      {/* GitHub Link */}
-      <a
-        href="https://github.com/KetanHegde/chatbot"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-6 right-6 p-3 text-gray-400 hover:text-white bg-gray-800/50 hover:bg-gray-700/70 backdrop-blur-xl rounded-full border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-110 hover:rotate-12 z-10"
-        title="View on GitHub"
-      >
-        <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-        </svg>
-      </a>
 
       {/* Main Content */}
       <div className="max-w-md w-full bg-gray-900/80 backdrop-blur-2xl rounded-3xl shadow-2xl border border-gray-700/50 p-8 space-y-8 relative z-10">
@@ -361,34 +352,42 @@ export default function OTPSignIn() {
 
         {/* Footer */}
         <div className="text-center pt-6 border-t border-gray-700/50">
-          <p className="text-gray-400 text-sm">Secure • Fast • Simple</p>
-          <div className="flex items-center justify-center space-x-4 mt-3">
-            <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <svg className="w-3 h-3" fill="white" viewBox="0 0 20 20">
+          <div className="flex justify-center items-center gap-7">
+            {/* GitHub Link */}
+            <a
+              href="https://github.com/KetanHegde/chatbot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 text-gray-400 hover:text-white bg-gray-800/50 hover:bg-gray-700/70 backdrop-blur-xl rounded-full border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-110 hover:rotate-12 z-10"
+              title="View on GitHub"
+            >
+              <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
+
+            <button
+              onClick={() => {
+                router.push("/docs");
+              }}
+              rel="noopener noreferrer"
+              className="p-3 text-white hover:text-white bg-gray-800/50 hover:bg-gray-700/70 backdrop-blur-xl rounded-full border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:scale-110 hover:rotate-12 z-10"
+              title="View Documentation"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="white"
+                viewBox="0 0 24 24"
+              >
                 <path
-                  fillRule="evenodd"
-                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                  clipRule="evenodd"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <span>Encrypted</span>
-            </div>
-            <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <svg className="w-3 h-3" fill="white" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Verified</span>
-            </div>
-            <div className="flex items-center space-x-1 text-xs text-gray-500">
-              <svg className="w-3 h-3" fill="white" viewBox="0 0 20 20">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
-              </svg>
-              <span>Trusted</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
