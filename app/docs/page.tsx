@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface CodeBlockProps {
+  children: string;
+  title?: string;
+}
+
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("overview");
   const [copiedCode, setCopiedCode] = useState("");
@@ -28,7 +33,7 @@ export default function DocsPage() {
     }
   };
 
-  const CodeBlock = ({ children, title }: any) => {
+  const CodeBlock = ({ children, title }: CodeBlockProps) => {
     return (
       <div className="bg-gray-900 rounded-lg border border-gray-700">
         {title && (

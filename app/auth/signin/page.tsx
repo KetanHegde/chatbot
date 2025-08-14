@@ -44,9 +44,7 @@ export default function OTPSignIn() {
       } else {
         toast.success("Verification code sent to your email!");
       }
-    } catch (error) {
-      toast.error("Failed to send OTP");
-    }
+    } catch {}
   };
 
   // Step 2: Verify the OTP
@@ -60,9 +58,7 @@ export default function OTPSignIn() {
       } else {
         setOtp("");
       }
-    } catch (error) {
-      toast.error("Failed to verify OTP");
-    }
+    } catch {}
   };
 
   // Resend OTP
@@ -81,9 +77,7 @@ export default function OTPSignIn() {
       } else {
         toast.success("New verification code sent!");
       }
-    } catch (error) {
-      toast.error("Failed to resend OTP");
-    }
+    } catch {}
   };
 
   return (
