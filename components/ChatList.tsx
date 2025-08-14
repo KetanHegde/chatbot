@@ -192,9 +192,7 @@ function ChatListComponent({ currentChatId }: ChatListProps) {
         return "Recently";
       }
       return formatDistanceToNow(date, { addSuffix: true });
-    } catch (_error) {
-      return "Recently";
-    }
+    } catch {}
   };
 
   if (!mounted || loading) {

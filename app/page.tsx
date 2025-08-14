@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthenticationStatus } from "@nhost/nextjs";
 import { useQuery, useMutation } from "@apollo/client";
@@ -15,11 +15,37 @@ export default function Home() {
 
   const { data: chatsData, loading: chatsLoading } = useQuery(GET_CHATS, {
     skip: !isAuthenticated,
-    fetchPolicy: "cache-and-network", // Ensure fresh data
+    fetchPolicy: "cache-and-network",
   });
   const [insertChat] = useMutation(INSERT_CHAT);
 
   const chats = chatsData?.chats || [];
+
+  // Memoize the function to avoid dependency issues
+  const createDefaultChatAndNavigate = useCallback(async () => {
+    setIsCreatingDefaultChat(true);
+
+    try {
+      const result = await insertChat({
+        variables: {
+          title: "Welcome Chat",
+        },
+        refetchQueries: [{ query: GET_CHATS }],
+        awaitRefetchQueries: true,
+      });
+
+      const newChatId = result.data?.insert_chats_one?.id;
+      if (newChatId) {
+        toast.success("Welcome! Let&apos;s start chatting!");
+        router.push(`/chat/${newChatId}`);
+      }
+    } catch (err) {
+      console.error("Error creating default chat:", err);
+      toast.error("Failed to create welcome chat");
+    } finally {
+      setIsCreatingDefaultChat(false);
+    }
+  }, [insertChat, router]);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -38,36 +64,17 @@ export default function Home() {
       createDefaultChatAndNavigate();
     } else if (isAuthenticated && !chatsLoading && chats.length > 0) {
       // If user has chats, navigate to the most recent one
-      const mostRecentChat = chats[0]; // Already ordered by updated_at desc
+      const mostRecentChat = chats[0];
       router.push(`/chat/${mostRecentChat.id}`);
     }
-  }, [isAuthenticated, isLoading, chatsLoading, chats.length, router]);
-
-  const createDefaultChatAndNavigate = async () => {
-    setIsCreatingDefaultChat(true);
-
-    try {
-      const result = await insertChat({
-        variables: {
-          title: "Welcome Chat",
-        },
-        // Update cache immediately and refetch to ensure consistency
-        refetchQueries: [{ query: GET_CHATS }],
-        awaitRefetchQueries: true,
-      });
-
-      const newChatId = result.data?.insert_chats_one?.id;
-      if (newChatId) {
-        toast.success("Welcome! Let's start chatting!");
-        router.push(`/chat/${newChatId}`);
-      }
-    } catch (err) {
-      console.error("Error creating default chat:", err);
-      toast.error("Failed to create welcome chat");
-    } finally {
-      setIsCreatingDefaultChat(false);
-    }
-  };
+  }, [
+    isAuthenticated,
+    chatsLoading,
+    chats.length,
+    isCreatingDefaultChat,
+    createDefaultChatAndNavigate,
+    router,
+  ]);
 
   if (isLoading || chatsLoading || isCreatingDefaultChat) {
     return (
@@ -115,7 +122,7 @@ export default function Home() {
           <p className="text-gray-400 mb-8 leading-relaxed">
             Your AI-powered chat assistant is ready to help you with anything.
             <span className="block mt-2 font-medium text-gray-300">
-              Let's start your first conversation!
+              Let&apos;s start your first conversation!
             </span>
           </p>
         </div>
