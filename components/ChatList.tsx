@@ -331,7 +331,7 @@ function ChatListComponent({ currentChatId, isOpen, onToggle }: ChatListProps) {
         </div>
 
         {/* Header with New Chat Button */}
-        <div className="px-6 pb-6">
+        <div className="px-6 p-6">
           <button
             onClick={handleNewChat}
             disabled={isCreating}
