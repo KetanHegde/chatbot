@@ -56,6 +56,8 @@ export default function OTPSignIn() {
       const result = await verifyEmailOTP(email, otp);
       if (result.isSuccess) {
         toast.success("Successfully signed in!");
+      } else {
+        setOtp("");
       }
     } catch (error) {
       toast.error("Failed to verify OTP");
