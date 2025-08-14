@@ -213,14 +213,14 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-gradient-to-br from-gray-800  to-black">
+    <div className="flex-1 flex flex-col bg-gradient-to-br from-gray-800 to-black">
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4 sm:space-y-6">
         {allMessages.length === 0 ? (
-          <div className="h-[92%] flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+          <div className="h-[92%] flex flex-col items-center justify-center text-center px-4">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
               <svg
-                className="w-8 h-8 text-white"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -235,10 +235,10 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
               </svg>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              <h3 className="text-lg sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                 Start a Conversation
               </h3>
-              <p className="text-gray-400 mt-2">
+              <p className="text-gray-400 mt-2 text-sm sm:text-base">
                 Send your first message to begin chatting
               </p>
             </div>
@@ -261,7 +261,7 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
         {/* Typing indicator */}
         {isLoading && (
           <div className="flex justify-start mb-4">
-            <div className="bg-gray-800/70 backdrop-blur-xl border border-gray-700 text-gray-300 max-w-xs lg:max-w-md px-4 py-3 rounded-xl">
+            <div className="bg-gray-800/70 backdrop-blur-xl border border-gray-700 text-gray-300 max-w-xs lg:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-xl">
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
                 <div
@@ -280,10 +280,10 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
       </div>
 
       {/* Input Section */}
-      <div className="border-t border-gray-800 bg-gray-900/50 backdrop-blur-xl p-6">
+      <div className="border-t border-gray-800 bg-gray-900/50 backdrop-blur-xl p-3 sm:p-6">
         <form
           onSubmit={handleSubmit}
-          className="flex space-x-4 max-w-4xl mx-auto"
+          className="flex flex-row space-x-3 sm:space-x-4 max-w-4xl mx-auto"
         >
           <div className="flex-1 relative">
             <textarea
@@ -291,7 +291,7 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Type your message..."
-              className="w-full bg-gray-800/70 backdrop-blur-xl border border-gray-700 rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none transition-all duration-200"
+              className="w-full bg-gray-800/70 backdrop-blur-xl border border-gray-700 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-gray-100 placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none transition-all duration-200 text-sm sm:text-base"
               rows={1}
               disabled={isLoading}
             />
@@ -300,17 +300,17 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
           <button
             type="submit"
             disabled={!message.trim() || isLoading}
-            className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center justify-center min-w-[60px] ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-200 flex items-center justify-center min-w-[50px] sm:min-w-[60px] ${
               isLoading || !message.trim()
                 ? "bg-gray-700 text-gray-400 cursor-not-allowed"
                 : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white transform hover:scale-105"
             }`}
           >
             {isLoading ? (
-              <div className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
             ) : (
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

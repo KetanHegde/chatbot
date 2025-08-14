@@ -28,7 +28,7 @@ export default function Home() {
     try {
       const result = await insertChat({
         variables: {
-          title: "Welcome Chat",
+          title: "New Chat",
         },
         refetchQueries: [{ query: GET_CHATS }],
         awaitRefetchQueries: true,
@@ -122,7 +122,7 @@ export default function Home() {
           <p className="text-gray-400 mb-8 leading-relaxed">
             Your AI-powered chat assistant is ready to help you with anything.
             <span className="block mt-2 font-medium text-gray-300">
-              Let&apos;s start your first conversation!
+              Let&apos;s start conversation!
             </span>
           </p>
         </div>
