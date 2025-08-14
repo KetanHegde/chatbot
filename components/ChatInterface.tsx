@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useSubscription, useMutation } from "@apollo/client";
 import {
   MESSAGES_SUBSCRIPTION,
@@ -48,7 +48,10 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
   const [sendMessageAction] = useMutation(SEND_MESSAGE_ACTION);
   const [updateChatTitle] = useMutation(UPDATE_CHAT_TITLE);
 
-  const serverMessages: MessageType[] = messagesData?.messages || [];
+  const serverMessages: MessageType[] = useMemo(
+    () => messagesData?.messages || [],
+    [messagesData?.messages]
+  );
 
   // Combine server messages with optimistic messages
   const allMessages = [...serverMessages, ...optimisticMessages].sort(
@@ -138,7 +141,7 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
       // Auto-update title if this is the first message
       await autoUpdateChatTitle(userMessage);
 
-      const result = await sendMessageAction({
+      await sendMessageAction({
         variables: {
           chatId: chatId,
           content: userMessage,

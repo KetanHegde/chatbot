@@ -99,7 +99,7 @@ export default function SignIn() {
         </form>
 
         <div className="text-center text-gray-400 text-sm">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/auth/signup">
             <span className="text-blue-300 hover:text-blue-300 transition-colors">
               {" "}

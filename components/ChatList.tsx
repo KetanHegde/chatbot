@@ -51,10 +51,10 @@ function ChatListComponent({ currentChatId }: ChatListProps) {
             const updatedChats = subscriptionData.data.chats;
 
             // Update each chat's updated_at in the cache
-            existingChats.forEach((chatRef: any) => {
+            existingChats.forEach((chatRef: { __ref: string }) => {
               const chatId = readField("id", chatRef);
               const updatedChat = updatedChats.find(
-                (chat: any) => chat.id === chatId
+                (chat: { id: string; updated_at: string }) => chat.id === chatId
               );
 
               if (updatedChat) {
@@ -192,7 +192,7 @@ function ChatListComponent({ currentChatId }: ChatListProps) {
         return "Recently";
       }
       return formatDistanceToNow(date, { addSuffix: true });
-    } catch (error) {
+    } catch (_error) {
       return "Recently";
     }
   };

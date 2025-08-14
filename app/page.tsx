@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
   const [isCreatingDefaultChat, setIsCreatingDefaultChat] = useState(false);
 
-  const { data: chatsData, loading: chatsLoading, refetch } = useQuery(GET_CHATS, {
+  const { data: chatsData, loading: chatsLoading } = useQuery(GET_CHATS, {
     skip: !isAuthenticated,
     fetchPolicy: "cache-and-network", // Ensure fresh data
   });
@@ -41,7 +41,7 @@ export default function Home() {
       const mostRecentChat = chats[0]; // Already ordered by updated_at desc
       router.push(`/chat/${mostRecentChat.id}`);
     }
-  }, [isAuthenticated, chatsLoading, chats.length, isCreatingDefaultChat]);
+  }, [isAuthenticated, isLoading, chatsLoading, chats.length, router]);
 
   const createDefaultChatAndNavigate = async () => {
     setIsCreatingDefaultChat(true);
