@@ -36,7 +36,7 @@ export default function Home() {
 
       const newChatId = result.data?.insert_chats_one?.id;
       if (newChatId) {
-        toast.success("Welcome! Let&apos;s start chatting!");
+        toast.success("Welcome! Let's start chatting!");
         router.push(`/chat/${newChatId}`);
       }
     } catch (err) {
