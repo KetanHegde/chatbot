@@ -103,8 +103,6 @@ function ChatListComponent({ currentChatId, isOpen, onToggle }: ChatListProps) {
 
   const chats: Chat[] = data?.chats || [];
 
-  console.log(chats);
-
   const generateChatTitle = (
     messages: Array<{ content: string; sender: string }>
   ) => {

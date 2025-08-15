@@ -80,6 +80,14 @@ export default function OTPSignIn() {
     } catch {}
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="animate-spin rounded-full h-16 w-16 border-2 border-purple-500 border-t-transparent mx-auto mb-4"></div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-12 relative overflow-hidden"

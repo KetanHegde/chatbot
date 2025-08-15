@@ -108,7 +108,6 @@ export default function ChatInterface({ chatId }: ChatInterfaceProps) {
             title,
           },
         });
-        console.log("Chat title updated to:", title);
       } catch (err) {
         console.error("Error updating chat title:", err);
       }
